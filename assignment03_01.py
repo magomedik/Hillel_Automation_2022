@@ -46,7 +46,7 @@ Cy = int(input("Введіть Сy: "))
 r1 = int(input("Введіть r1: "))
 r2 = int(input("Введіть r2: "))
 
-L = math.sqrt((Px-Cx)^2 + (Py-Cy)^2)
+L = math.sqrt((Px-Cx)**2 + (Py-Cy)**2)
 
 result = "не належить"
 if r1 < L < r2:
