@@ -23,15 +23,26 @@
 # Строка містить літеру "а" більше 20 разів.
 
 
-text = str(input("Введіть текст: "))  # зчитування значення від користувача
-lit = str(input("Введіть літеру: "))
-lit_count = int(text.count(lit))
+text = input("Введіть текст: ")  # зчитування значення від користувача
+lit = input("Введіть літеру: ")
+lit_count = text.count(lit)
+empty = len(lit)
 
-if len(lit) > 1:
+
+if empty == 0:
+    print("Ви не ввели літеру")
+elif len(lit) != 1:
     print("Ви ввели більше ніж 1 літеру")
-elif lit_count < 1:
+    exit(1)
+
+
+if lit_count == 0:
     print(f"Літери {lit} не знайдено")
-elif lit_count <= 20:
-    print(f"Строка містить літеру {lit} до {lit_count} разів")
-else:
+elif 0 < lit_count <= 10 and empty != 0:
+    print(f"Строка містить літеру {lit} до 10 разів")
+elif 0 < lit_count <= 20 and empty != 0:
+    print(f"Строка містить літеру {lit} до 20 разів")
+elif lit_count > 20 and empty != 0:
     print(f"Строка містить літеру {lit} більше 20 разів")
+else:
+    exit(2)
