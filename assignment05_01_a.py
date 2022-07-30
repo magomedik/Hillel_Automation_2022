@@ -26,23 +26,23 @@
 text = input("Введіть текст: ")  # зчитування значення від користувача
 lit = input("Введіть літеру: ")
 lit_count = text.count(lit)
-empty = len(lit)
+lit_len = len(lit)
 
 
-if empty == 0:
+if lit_len == 0:
     print("Ви не ввели літеру")
-elif len(lit) != 1:
+elif lit_len != 1:
     print("Ви ввели більше ніж 1 літеру")
     exit(1)
 
 
 if lit_count == 0:
     print(f"Літери {lit} не знайдено")
-elif 0 < lit_count <= 10 and empty != 0:
+elif 0 < lit_count <= 10 and lit_len != 0:
     print(f"Строка містить літеру {lit} до 10 разів")
-elif 0 < lit_count <= 20 and empty != 0:
+elif 0 < lit_count <= 20 and lit_len != 0:
     print(f"Строка містить літеру {lit} до 20 разів")
-elif lit_count > 20 and empty != 0:
+elif lit_count > 20 and lit_len != 0:
     print(f"Строка містить літеру {lit} більше 20 разів")
 else:
     exit(2)
