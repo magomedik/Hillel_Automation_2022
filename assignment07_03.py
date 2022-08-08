@@ -13,6 +13,10 @@ N = int(input("Введіть N: "))
 K = int(input("Введіть K: "))
 
 
-data = [i for i in range(N) if i % K != 0 and K % N]
+
+if K > N:
+    K %= N
+
+data = [i for i in range(N) if i % K != 0]
 
 print(data)
