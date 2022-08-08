@@ -13,4 +13,4 @@ data = {
 
 
 
-print({x: k for k in tuple(data.keys()) for x in data.pop(k)})
+print({x: k for k in list(data) for x in data.pop(k)})
