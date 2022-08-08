@@ -14,16 +14,15 @@
 
 def calculate(x, operand, y):
     if operand == "+":
-        print(x + y)
+        return x + y
     elif operand == "-":
-        print(x - y)
+        return x - y
     elif operand == "*":
-        print(x * y)
+        return x * y
     elif operand == "/":
-        print(x / y)
-    else:
-        print(None)
+        return x / y
 
-calculate(2, "+", 2)
-calculate("hello world!", "*", 2)
-calculate(10, ")", 10)
+
+print(calculate(2, "+", 2))
+print(calculate("hello world!", "*", 2))
+print(calculate(10, ")", 10))
