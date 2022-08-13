@@ -26,8 +26,8 @@ import random
 
 rand_list = random.sample(range(1, 100), 10)
 
-def filter(data, pred):
-    res = [pred(i) for i in data if pred(i) == i]
+def my_filter(data, pred):
+    res = [i for i in data if pred(i) == i]
     return res
 
 def pred(i):
@@ -36,4 +36,4 @@ def pred(i):
     else:
         return False
 
-print(filter(data=rand_list, pred=pred))
+print(my_filter(data=rand_list, pred=pred))

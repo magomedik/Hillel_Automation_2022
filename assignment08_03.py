@@ -16,9 +16,6 @@ import random
 rand_list = random.sample(range(1, 100), 10)
 
 
-def fun(data):
-        x = list(filter(lambda i: i % 2 == 0, data))
-        return x
+x = list(filter(lambda i: i % 2 == 0, rand_list))
 
-
-print(fun(rand_list))
+print(x)

@@ -31,14 +31,13 @@
 
 
 def search_linearly(seq, element):
-    x = [i for i, v in enumerate(seq) if v == element]
-    if x >= [0]:
-        return x
-    else:
-        return None
+
+    for i, v in enumerate(seq):
+        if v == element:
+            return i
 
 
-print(search_linearly([1, 8, 7, 33, 9, 2], 33))
-print(search_linearly("hello world!", "!"))
+print(search_linearly([1, 8, 7, 33, 8, 2], 8))
+print(search_linearly("hello world!", "l"))
 print(search_linearly(tuple(range(10)), 10))
 print(search_linearly(["Hello", "world"], "planet"))
