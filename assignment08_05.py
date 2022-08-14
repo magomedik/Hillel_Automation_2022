@@ -39,12 +39,16 @@ def store_sequence(filename, seq):
     if not len(seq):
         return
 
-    output_file = open(filename, "w")
-    with open(filename, "w") as seq_file:
-        for el in seq:
-            seq_file.write(str(el))
-            seq_file.write("\n")        # зберігаємо елемент у файл + в колонці
-        return seq_file                 # повертаємо файл (ресурс) операційній системі
+    seq_file = output_file = open(filename, "w")
+
+    # зберігаємо елемент у файл + в колонці
+    for el in seq:
+        seq_file.write(str(el))
+        seq_file.write("\n")
+    seq_file.close()
+
+    # повертаємо файл (ресурс) операційній системі
+    return seq_file
 
 
 def store_matrix(filename, matrix):
@@ -64,10 +68,8 @@ def store_matrix(filename, matrix):
         # зберігаємо кожний елемент у файл
 
         for row in matrix:
-            for el in row:
                 matrix_file.write(' '.join(map(str, row)))
                 matrix_file.write("\n")
-                break
 
 
 def main():
