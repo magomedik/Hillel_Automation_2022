@@ -11,3 +11,5 @@ assignment04_03_a_test.py
 __pycache__/
 .DS_Store
 venv
+test.log
+conftest.py
