@@ -1,0 +1,13 @@
+.idea/
+main.py
+sequences.py
+generated_matrix.txt
+generated_sequence.txt
+fizzbuzz_comprehension.py
+fizzbuzz_iterative.py
+assignment04_01_a.py
+assignment04_02_a.py
+assignment04_03_a_test.py
+__pycache__/
+.DS_Store
+venv
