@@ -8,7 +8,7 @@ urls = ["https://www.aqa.science/admin/", "https://www.aqa.science/admin1/", "ht
 
 
 def save_to_file(data: str):
-    with open("test.log", "a+") as f:
+    with open("../test.log", "a+") as f:
         f.write(f"{data}\n")
 
 
