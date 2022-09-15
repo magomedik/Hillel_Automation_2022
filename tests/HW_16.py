@@ -40,6 +40,8 @@ def test_create_user():
     create_conf_password.send_keys(pytest.secret_variables["password"])
     create_save.click()
 
+
+def test_read_user():
     # Check success of creation
     success_create = pytest.driver.find_element(By.XPATH, CreateUsers.success_id)
     assert success_create.text == pytest.secret_variables["username"], print("User didn't created")
