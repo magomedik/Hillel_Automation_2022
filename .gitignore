@@ -13,7 +13,7 @@ __pycache__/
 venv
 test.log
 conftest.py
-data/cred.json
+tests/data/cred.json
 .pytest_cache
 tests/.pytest_cache
 

@@ -5,7 +5,7 @@ CRUD for user via https://www.aqa.science/
 import time
 import pytest
 from selenium.webdriver.common.by import By
-from data.locators import CreateUsers, UpdateUsers, DeleteUsers
+from tests.data.locators import CreateUsers, UpdateUsers, DeleteUsers
 
 
 def test_create_user():

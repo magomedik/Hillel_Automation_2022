@@ -9,18 +9,18 @@ import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from data.locators import LoginPage, AdminPage, FindUsers
+from tests.data.locators import LoginPage, AdminPage, FindUsers
 from pathlib import Path
 
-
 # make path runnable on different OS
-# project_pass = Path.cwd()
-# file_pass = project_pass.joinpath("data", "cred.json")
+project_pass = Path.cwd()
+file_pass = project_pass.joinpath("data", "cred.json")
+
 
 @pytest.fixture(scope="session", autouse=True)
 def ses_class():
     # Open file with data
-    with open('/Users/cityman88/PycharmProjects/Hillel/data/cred.json', "r") as f:
+    with open(file_pass, "r") as f:
         pytest.secret_variables = json.load(f)
 
     # Run container
