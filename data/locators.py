@@ -7,6 +7,8 @@ class LoginPage:
 
 class AdminPage(LoginPage):
     admin_page_header_id = '//*[@id="site-name"]/a'
+    logout_id = '//*[@id="user-tools"]/a[3]'
+    log_again_id = '//*[@id="content"]/p[2]/a'
 
 
 class CreateUsers:
@@ -23,6 +25,7 @@ class UpdateUsers:
     save_btn_id = '//*[@id="user_form"]/div/div/input[1]'
 
 class FindUsers:
+    users_id = '//*[@id="content-main"]/div/table/tbody/tr[2]/th/a'
     find_field_id = '//*[@id="searchbar"]'
     found_username = '//*[@id="result_list"]/tbody/tr/th/a'
 

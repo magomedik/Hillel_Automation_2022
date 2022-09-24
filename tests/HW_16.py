@@ -4,25 +4,8 @@ CRUD for user via https://www.aqa.science/
 """
 import time
 import pytest
-
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from data.locators import LoginPage, AdminPage, CreateUsers, UpdateUsers, FindUsers, DeleteUsers
-
-
-def test_login(ses_class):
-    # Login as admin
-    username = pytest.driver.find_element(By.XPATH, LoginPage.username_id)
-    password = pytest.driver.find_element(By.XPATH, LoginPage.pswd_id)
-    btn = pytest.driver.find_element(By.XPATH, LoginPage.submit_btn)
-
-    username.send_keys(pytest.secret_variables["adm_name"])
-    password.send_keys(pytest.secret_variables["adm_password"])
-    btn.click()
-
-    # Check login
-    adm_page_check = pytest.driver.find_element(By.XPATH, AdminPage.admin_page_header_id)
-    assert adm_page_check.text == "Django administration", print("This is not admin page")
+from data.locators import CreateUsers, UpdateUsers, DeleteUsers
 
 
 def test_create_user():
@@ -41,14 +24,13 @@ def test_create_user():
     create_save.click()
 
 
-def test_read_user():
+def test_read_user(find_func):
     # Check success of creation
     success_create = pytest.driver.find_element(By.XPATH, CreateUsers.success_id)
     assert success_create.text == pytest.secret_variables["username"], print("User didn't created")
-    time.sleep(5)
 
 
-def test_update_user():
+def test_update_user(find_func):
     # Update user
     first_name = pytest.driver.find_element(By.XPATH, UpdateUsers.first_name_id)
     last_name = pytest.driver.find_element(By.XPATH, UpdateUsers.last_name_id)
@@ -56,24 +38,15 @@ def test_update_user():
 
     first_name.send_keys(pytest.secret_variables["first_name"])
     last_name.send_keys(pytest.secret_variables["last_name"])
+    time.sleep(3)
     save_updates.click()
 
-    # Search created user
-    time.sleep(5)
 
-    search = pytest.driver.find_element(By.XPATH, FindUsers.find_field_id)
-
-    search.send_keys(pytest.secret_variables["username"])
-    search.send_keys(Keys.ENTER)
-
-    search_result = pytest.driver.find_element(By.XPATH, FindUsers.found_username)
-    search_result.click()
-
-
-def test_delete_user():
+def test_delete_user(find_func):
     # Delete user
     delete_user = pytest.driver.find_element(By.XPATH, DeleteUsers.delete_btn_id)
     delete_user.click()
+    time.sleep(4)
 
     confirm_delete = pytest.driver.find_element(By.XPATH, DeleteUsers.confirm_delete_id)
     confirm_delete.click()
