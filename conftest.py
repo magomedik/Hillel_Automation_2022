@@ -87,6 +87,7 @@ def find_func():
 
 @pytest.fixture()
 def user_data():
+    # read URL value in created user
     with open(add_user_file, "r") as f:
         data = json.load(f)
         data_url = data["url"]
@@ -95,7 +96,7 @@ def user_data():
 
 @pytest.fixture()
 def cred_file():
-    # Open file with data
+    # Open file with admin credentials
     with open(file_pass, "r") as f:
         secret_variables = json.load(f)
         adm_name = secret_variables["adm_name"]
@@ -105,6 +106,7 @@ def cred_file():
 
 @pytest.fixture()
 def check_user(cred_file):
+    # create users list with all users and write to file
     result = []
 
     url = 'https://www.aqa.science/'
