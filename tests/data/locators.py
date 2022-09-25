@@ -1,4 +1,3 @@
-
 class LoginPage:
     username_id = '//*[@id="id_username"]'
     pswd_id = '//*[@id="id_password"]'
@@ -19,10 +18,12 @@ class CreateUsers:
     save_id = '//*[@id="user_form"]/div/div/input[1]'
     success_id = '//*[@id="content"]/h2'
 
+
 class UpdateUsers:
     first_name_id = '//*[@id="id_first_name"]'
     last_name_id = '//*[@id="id_last_name"]'
     save_btn_id = '//*[@id="user_form"]/div/div/input[1]'
+
 
 class FindUsers:
     users_id = '//*[@id="content-main"]/div/table/tbody/tr[2]/th/a'

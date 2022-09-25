@@ -6,6 +6,8 @@ import pytest
 import os
 import time
 import json
+
+import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -15,9 +17,10 @@ from pathlib import Path
 # make path runnable on different OS
 project_pass = Path.cwd()
 file_pass = project_pass.joinpath("data", "cred.json")
+add_user_file = project_pass.joinpath("added_user.json")
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="session", autouse=False)
 def ses_class():
     # Open file with data
     with open(file_pass, "r") as f:
@@ -47,7 +50,7 @@ def ses_class():
     os.system("docker rm --force mgm_seleniarm_chrome")
 
 
-@pytest.fixture(scope="function", autouse=True)
+@pytest.fixture(scope="function", autouse=False)
 def login_logout_func():
     # Login as admin
     username = pytest.driver.find_element(By.XPATH, LoginPage.username_id)
@@ -80,6 +83,51 @@ def find_func():
     search_result = pytest.driver.find_element(By.XPATH, FindUsers.found_username)
     search_result.click()
     time.sleep(3)
+
+
+@pytest.fixture()
+def user_data():
+    with open(add_user_file, "r") as f:
+        data = json.load(f)
+        data_url = data["url"]
+        return data_url
+
+
+@pytest.fixture()
+def cred_file():
+    # Open file with data
+    with open(file_pass, "r") as f:
+        secret_variables = json.load(f)
+        adm_name = secret_variables["adm_name"]
+        adm_pswd = secret_variables["adm_password"]
+        return adm_name, adm_pswd
+
+
+@pytest.fixture()
+def check_user(cred_file):
+    result = []
+
+    url = 'https://www.aqa.science/'
+
+    response = requests.get(url).json()
+
+    received_url = response['users']
+
+    response_new = requests.get(received_url, auth=cred_file).json()
+    temp_result = response_new["results"]
+
+    result += temp_result
+
+    while True:
+        next_url = response_new["next"]
+        if not next_url:
+            break
+        response_new = requests.get(next_url, auth=cred_file).json()
+        result += response_new['results']
+
+    with open('users_list.json', 'w') as r:
+        json.dump(result, r)
+
 
 # @pytest.fixture(scope="function", autouse=True)
 # def setup():
