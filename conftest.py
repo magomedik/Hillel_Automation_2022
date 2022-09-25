@@ -1,5 +1,5 @@
 '''
-This file describe fixture for pre and post-conditions
+This file describe all direct fixtures and pre/post-conditions fixture
 '''
 
 import pytest
@@ -96,7 +96,7 @@ def user_data():
 
 @pytest.fixture()
 def cred_file():
-    # Open file with admin credentials
+    # take admin credentials
     with open(file_pass, "r") as f:
         secret_variables = json.load(f)
         adm_name = secret_variables["adm_name"]
