@@ -31,8 +31,6 @@ def ses_class():
     os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 -p 5900:5900 seleniarm/standalone-chromium")
     time.sleep(3)
 
-    print(os.system("docker container ls"))
-
     # Chrome options
     options = webdriver.ChromeOptions()
     options.add_argument('--ignore-ssl-errors=yes')
@@ -50,7 +48,7 @@ def ses_class():
     # Post-conditions
     time.sleep(3)
     pytest.driver.close()
-    os.system("docker rm --force mgm_seleniarm_chrome")
+    # os.system("docker rm --force mgm_seleniarm_chrome")
 
 
 @pytest.fixture(scope="function", autouse=True)
@@ -132,7 +130,6 @@ def check_user(cred_file):
 
     with open('users_list.json', 'w') as r:
         json.dump(result, r)
-
 
 # @pytest.fixture(scope="function", autouse=True)
 # def setup():
