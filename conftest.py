@@ -33,7 +33,7 @@ def ses_class():
     # os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 -p 5900:5900 seleniarm/standalone-chromium")
 
     # for run docker local on Jenkins on other process
-    os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 -p 5900:5900 selenium/standalone-chrome-debug")
+    os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 selenium/standalone-chrome-debug")
     time.sleep(3)
 
     # Chrome options
