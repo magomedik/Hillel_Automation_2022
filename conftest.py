@@ -34,7 +34,7 @@ def ses_class():
 
     # for run docker local on Jenkins on other process
     os.system(f"docker run -d --name mgm_seleniarm_chrome -p 4444:4444  -p 5900:5900 selenium/standalone-chrome")
-    time.sleep(3)
+    time.sleep(20)
 
     # Chrome options
     options = webdriver.ChromeOptions()
