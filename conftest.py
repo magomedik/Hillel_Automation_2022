@@ -27,8 +27,11 @@ def ses_class():
         pytest.secret_variables = json.load(f)
 
     # Run container
-    os.system("docker run -d --name mgm_seleniarm_chrome -p 4444:4444 -p 5900:5900 seleniarm/standalone-chromium")
+    port = 4341
+    os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 -p 5900:5900 seleniarm/standalone-chromium")
     time.sleep(3)
+
+    os.system("docker container ls")
 
     # Chrome options
     options = webdriver.ChromeOptions()
@@ -50,7 +53,7 @@ def ses_class():
     os.system("docker rm --force mgm_seleniarm_chrome")
 
 
-@pytest.fixture(scope="function", autouse=False)
+@pytest.fixture(scope="function", autouse=True)
 def login_logout_func():
     # Login as admin
     username = pytest.driver.find_element(By.XPATH, LoginPage.username_id)

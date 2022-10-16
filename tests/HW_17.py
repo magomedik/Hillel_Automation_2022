@@ -17,6 +17,12 @@ urls = ["https://www.aqa.science/users/"]
 def ses_class():
     pass
 
+
+@pytest.fixture
+def login_logout_func():
+    pass
+
+
 def test_create_user_api(cred_file):
     # Create user
     payload = json.dumps({
