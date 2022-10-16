@@ -27,8 +27,8 @@ def ses_class():
         pytest.secret_variables = json.load(f)
 
     # Run container
-    # port = 4341
-    # os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 -p 5900:5900 seleniarm/standalone-chromium")
+    port = 4341
+    os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 -p 5900:5900 seleniarm/standalone-chromium")
     time.sleep(3)
 
     # Chrome options
@@ -38,7 +38,7 @@ def ses_class():
 
     # Run Chrome with options
     pytest.driver = webdriver.Remote(
-        command_executor='http://localhost:4444/wd/hub',
+        command_executor=f'http://localhost:{port}/wd/hub',
         options=options
     )
 
@@ -48,7 +48,7 @@ def ses_class():
     # Post-conditions
     time.sleep(3)
     pytest.driver.close()
-    # os.system("docker rm --force mgm_seleniarm_chrome")
+    os.system("docker rm --force mgm_seleniarm_chrome")
 
 
 @pytest.fixture(scope="function", autouse=True)
