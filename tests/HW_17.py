@@ -1,7 +1,7 @@
 """
 CRUD user via API with https://www.aqa.science/
 """
-
+import pytest
 import requests
 import json
 import random
@@ -12,6 +12,10 @@ headers = {
 }
 urls = ["https://www.aqa.science/users/"]
 
+
+@pytest.fixture
+def ses_class():
+    pass
 
 def test_create_user_api(cred_file):
     # Create user

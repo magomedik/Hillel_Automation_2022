@@ -20,7 +20,7 @@ file_pass = project_pass.joinpath("data", "cred.json")
 add_user_file = project_pass.joinpath("added_user.json")
 
 
-@pytest.fixture(scope="session", autouse=False)
+@pytest.fixture(scope="session", autouse=True)
 def ses_class():
     # Open file with data
     with open(file_pass, "r") as f:
