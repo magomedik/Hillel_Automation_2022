@@ -27,8 +27,8 @@ def ses_class():
         pytest.secret_variables = json.load(f)
 
     # Run container
-    port = 4341
-    os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 -p 5900:5900 seleniarm/standalone-chromium")
+    # port = 4341
+    # os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 -p 5900:5900 seleniarm/standalone-chromium")
     time.sleep(3)
 
     # Chrome options
