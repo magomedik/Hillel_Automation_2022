@@ -1,6 +1,9 @@
+allure-pytest==2.11.1
+allure-python-commons==2.11.1
 async-generator==1.10
 attrs==22.1.0
 autopep8==1.7.0
+behave==1.2.6
 certifi==2022.6.15
 charset-normalizer==2.1.1
 click==8.1.3
