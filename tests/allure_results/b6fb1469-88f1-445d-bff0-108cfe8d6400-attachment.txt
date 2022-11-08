@@ -1,2 +1,0 @@
-docker: Error response from daemon: Conflict. The container name "/mgm_seleniarm_chrome" is already in use by container "fe2506810608041f1f7765332051c23de5d62ee13aed3c4fc9df01333094c525". You have to remove (or rename) that container to be able to reuse that name.
-See 'docker run --help'.
