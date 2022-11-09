@@ -67,9 +67,13 @@ def login_logout_func(request):
     username.send_keys(pytest.secret_variables["adm_name"])
     password.send_keys(pytest.secret_variables["adm_password"])
     btn.click()
+
+    # variable needed for determine only failed tests
+    failed_before = request.session.testsfailed
+
     yield
     # if test failed add screenshot to allure report
-    if request.session.testsfailed:
+    if request.session.testsfailed != failed_before:
         allure.attach(pytest.driver.get_screenshot_as_png(), name="Screen_for_failed",
                       attachment_type=AttachmentType.PNG)
         time.sleep(3)
