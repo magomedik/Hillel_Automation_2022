@@ -1,7 +1,7 @@
 '''
 This file describe all direct fixtures and pre/post-conditions fixture
 '''
-
+import allure
 import pytest
 import os
 import time
@@ -13,6 +13,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from tests.data.locators import LoginPage, AdminPage, FindUsers
 from pathlib import Path
+from allure_commons.types import AttachmentType
 
 # make path runnable on different OS
 project_pass = Path.cwd()
@@ -32,7 +33,7 @@ def ses_class():
     # for run docker local on M1
     # os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 -p 5900:5900 seleniarm/standalone-chromium")
 
-    # for run docker local on Jenkins on other process
+    # for run docker via Jenkins on other process
     os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 selenium/standalone-chrome-debug")
     time.sleep(3)
 
@@ -57,7 +58,7 @@ def ses_class():
 
 
 @pytest.fixture(scope="function", autouse=True)
-def login_logout_func():
+def login_logout_func(request):
     # Login as admin
     username = pytest.driver.find_element(By.XPATH, LoginPage.username_id)
     password = pytest.driver.find_element(By.XPATH, LoginPage.pswd_id)
@@ -67,6 +68,12 @@ def login_logout_func():
     password.send_keys(pytest.secret_variables["adm_password"])
     btn.click()
     yield
+    # if test failed add screenshot to allure report
+    if request.session.testsfailed:
+        allure.attach(pytest.driver.get_screenshot_as_png(), name="Screen_for_failed",
+                      attachment_type=AttachmentType.PNG)
+        time.sleep(3)
+
     # logout
     logout = pytest.driver.find_element(By.XPATH, AdminPage.logout_id)
     logout.click()

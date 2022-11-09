@@ -27,7 +27,8 @@ def test_create_user():
 def test_read_user(find_func):
     # Check success of creation
     success_create = pytest.driver.find_element(By.XPATH, CreateUsers.success_id)
-    assert success_create.text == pytest.secret_variables["username"], print("User didn't created")
+    assert success_create.text != pytest.secret_variables["username"], print("User didn't created")
+    time.sleep(10)
 
 
 def test_update_user(find_func):
