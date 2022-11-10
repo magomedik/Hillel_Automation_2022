@@ -4,11 +4,12 @@
 import os
 import time
 import json
-
+import allure
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from tests.data.locators import LoginPage, AdminPage
 from pathlib import Path
+from allure_commons.types import AttachmentType
 
 # make path runnable on different OS
 project_pass = Path.cwd()
@@ -73,6 +74,9 @@ def before_scenario(context, scenario):
     password.send_keys(context.secret_variables["adm_password"])
     btn.click()
 
+    # variable needed for determine only failed tests
+    # context.failed_before = request.session.testsfailed
+
 
 def after_scenario(context, scenario):
     # logout
@@ -89,7 +93,11 @@ def before_step(context, step):
 
 
 def after_step(context, step):
-    pass
+    # if test failed add screenshot to allure report
+    if step.status == 'failed':
+        allure.attach(context.driver.get_screenshot_as_png(), name="Screen_for_failed",
+                      attachment_type=AttachmentType.PNG)
+        time.sleep(3)
 
 
 def before_tag(context, tag):

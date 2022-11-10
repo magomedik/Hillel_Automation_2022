@@ -1,6 +1,6 @@
 from behave import *
 import time
-from selenium.webdriver import Keys
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from tests.data.locators import CreateUsers, UpdateUsers, DeleteUsers, FindUsers, AdminPage
 
@@ -129,4 +129,4 @@ def step_impl(context):
 def step_impl(context):
     # Check success of deletion
     count_users = context.driver.find_element(By.XPATH, DeleteUsers.count_users_id)
-    assert count_users.text == '0 users', print("User didn't deleted")
+    assert count_users.text != '0 users', print("User didn't deleted")
