@@ -129,4 +129,4 @@ def step_impl(context):
 def step_impl(context):
     # Check success of deletion
     count_users = context.driver.find_element(By.XPATH, DeleteUsers.count_users_id)
-    assert count_users.text != '0 users', print("User didn't deleted")
+    assert count_users.text == '0 users', print("User didn't deleted")
