@@ -74,9 +74,6 @@ def before_scenario(context, scenario):
     password.send_keys(context.secret_variables["adm_password"])
     btn.click()
 
-    # variable needed for determine only failed tests
-    # context.failed_before = request.session.testsfailed
-
 
 def after_scenario(context, scenario):
     # logout
