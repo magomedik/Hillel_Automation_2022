@@ -26,10 +26,10 @@ def before_all(context):
     port = 4488
 
     # for run docker local on M1
-    os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 -p 5900:5900 seleniarm/standalone-chromium")
+    # os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 -p 5900:5900 seleniarm/standalone-chromium")
 
     # for run docker local on Jenkins on other process
-    # os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 selenium/standalone-chrome-debug")
+    os.system(f"docker run -d --name mgm_seleniarm_chrome -p {port}:4444 selenium/standalone-chrome-debug")
     time.sleep(3)
 
     # Chrome options
