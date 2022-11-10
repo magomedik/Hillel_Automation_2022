@@ -13,7 +13,7 @@ from allure_commons.types import AttachmentType
 
 # make path runnable on different OS
 project_pass = Path.cwd()
-file_pass = project_pass.joinpath("data", "cred.json")
+file_pass = project_pass.joinpath("tests", "data", "cred.json")
 add_user_file = project_pass.joinpath("added_user.json")
 
 
