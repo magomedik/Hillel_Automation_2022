@@ -19,7 +19,7 @@ add_user_file = project_pass.joinpath("added_user.json")
 
 def before_all(context):
     # Open file with data
-    with open('/Users/cityman88/PycharmProjects/Hillel/tests/data/cred.json', "r") as f:
+    with open(file_pass, "r") as f:
         secret_variables = json.load(f)
 
     # Run container
